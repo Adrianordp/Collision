@@ -28,6 +28,7 @@ void draw()
   stroke(#f33030);
   fill(#30a8f3);
   circle(circle1X, circle1Y, radius1*2);
+
   checkHit();
   moveCircle();
   moveEllipse();
@@ -38,11 +39,22 @@ void checkHit()
   if (sqrt(sq(distX)+sq(distY)) < 70)
   {
     float theta = atan(distY/distX);
-    inc1X = inc1X + (inc1X-inc2X)*cos(theta)/2;
-    inc1Y = inc1Y + (inc1X-inc2X)*sin(theta)/2;
+    float vrX = inc1X - inc2X;
+    float vrY = inc1Y - inc2Y;
     
-    inc2X = inc2X + (inc2X-inc1X)*cos(theta)/2;
-    inc2Y = inc2Y + (inc2X-inc1X)*sin(theta)/2;
+    float dx = vrX*sq(cos(theta)) + vrY*sin(theta)*cos(theta);
+    float dy = vrX*cos(theta)*sin(theta) + vrY*sq(cos(theta))
+
+    inc1X = inc1X + dx;
+    inc1Y = inc1Y + dy;
+    inc2X = inc2X - dx;
+    inc2Y = inc2Y - dy;
+
+    //inc1X = inc1X + (inc1X-inc2X)*cos(theta)/2;
+    //inc1Y = inc1Y + (inc1X-inc2X)*sin(theta)/2;
+    
+    //inc2X = inc2X + (inc2X-inc1X)*cos(theta)/2;
+    //inc2Y = inc2Y + (inc2X-inc1X)*sin(theta)/2;
     //background(#111111);
   }
 }
