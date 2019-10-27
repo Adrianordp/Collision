@@ -43,7 +43,7 @@ void checkHit()
     float vrY = inc1Y - inc2Y;
     
     float dx = vrX*sq(cos(theta)) + vrY*sin(theta)*cos(theta);
-    float dy = vrX*cos(theta)*sin(theta) + vrY*sq(cos(theta))
+    float dy = vrX*cos(theta)*sin(theta) + vrY*sq(sin(theta))
 
     inc1X = inc1X + dx;
     inc1Y = inc1Y + dy;
